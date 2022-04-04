@@ -1,0 +1,89 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: "isep";
+    font-style: normal;
+    font-weight: 400;
+    src: url("/public/fonts/isep.woff2") format("woff2"),
+      url("/public/fonts/isep.woff") format("woff");
+  }
+
+  body {
+    @apply antialiased text-black;
+    text-rendering: optimizeSpeed;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* toogle */
+  .toggle input {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%22-4 -4 8 8%22%3E%3Ccircle r=%223%22 fill=%22%23fff%22/%3E%3C/svg%3E");
+  }
+  .toggle input:checked {
+    background-position: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%22-4 -4 8 8%22%3E%3Ccircle r=%223%22 fill=%22%23fff%22/%3E%3C/svg%3E");
+  }
+
+  /* highlight playing ayah */
+  .highlight-ayah {
+    @apply bg-gray-100 transition;
+  }
+
+  /* scrollbar */
+  .scrollbar::-webkit-scrollbar {
+    @apply bg-transparent w-2;
+  }
+  .scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-slate-300 rounded;
+  }
+  .scrollbar::-webkit-scrollbar-track {
+    @apply bg-slate-100 rounded;
+  }
+
+  /* checkbox */
+  .checkbox {
+    @apply w-6 h-6 border border-slate-300 hover:border-slate-400 cursor-pointer rounded-md appearance-none checked:bg-primary checked:border-primary checked:hover:border-primary;
+  }
+  .checkbox:checked {
+    @apply bg-[url("data:image/svg+xml;charset=utf-8;base64,PHN2ZyB2aWV3Qm94PScwIDAgMTYgMTYnIGZpbGw9JyNmZmYnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zyc+PHBhdGggZD0nTTEyLjIwNyA0Ljc5M2ExIDEgMCAwIDEgMCAxLjQxNGwtNSA1YTEgMSAwIDAgMS0xLjQxNCAwbC0yLTJhMSAxIDAgMCAxIDEuNDE0LTEuNDE0TDYuNSA5LjA4Nmw0LjI5My00LjI5M2ExIDEgMCAwIDEgMS40MTQgMHonLz48L3N2Zz4=")];
+  }
+  .checkbox:not(input:checked):hover {
+    @apply bg-[url("data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PScwIDAgMTYgMTYnIGZpbGw9JyNlMmU4ZjAnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zyc+PHBhdGggZD0nTTEyLjIwNyA0Ljc5M2ExIDEgMCAwIDEgMCAxLjQxNGwtNSA1YTEgMSAwIDAgMS0xLjQxNCAwbC0yLTJhMSAxIDAgMCAxIDEuNDE0LTEuNDE0TDYuNSA5LjA4Nmw0LjI5My00LjI5M2ExIDEgMCAwIDEgMS40MTQgMHonLz48L3N2Zz4=")];
+  }
+
+  /* slider tick */
+  input[type="range"]::-webkit-slider-thumb {
+    @apply appearance-none h-4 w-4 rounded-full cursor-pointer bg-primary;
+  }
+  input[type="range"]::-moz-range-thumb {
+    @apply appearance-none h-4 w-4 rounded-full cursor-pointer bg-primary;
+  }
+
+  /* skeleton */
+  .skeleton {
+    @apply relative hidden overflow-hidden;
+  }
+  .skeleton::after {
+    @apply absolute top-0 right-0 left-0 bottom-0 -translate-x-full;
+    background-image: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0,
+      rgba(255, 255, 255, 0.2) 20%,
+      rgba(255, 255, 255, 0.5) 60%,
+      rgba(255, 255, 255, 0)
+    );
+    animation: shimmer 3s infinite;
+    content: "";
+  }
+  @keyframes shimmer {
+    100% {
+      transform: translateX(100%);
+    }
+  }
+}

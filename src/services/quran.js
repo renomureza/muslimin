@@ -1,0 +1,32 @@
+import { useQuery } from "react-query";
+
+const BASE_URL = "https://quran-api-id.vercel.app";
+
+const useSurahs = () => {
+  return useQuery(["surah"], () =>
+    fetch(`${BASE_URL}/surahs`)
+      .then((res) => res.json())
+      .then((res) => res.data)
+  );
+};
+
+const useSurah = (surahNumber, options) => {
+  return useQuery(
+    ["surah", surahNumber],
+    () =>
+      fetch(`${BASE_URL}/surahs/${surahNumber}`)
+        .then((res) => res.json())
+        .then((res) => res.data),
+    options
+  );
+};
+
+const useAyah = (surahNumber, ayahNumber) => {
+  return useQuery(["ayah", surahNumber, ayahNumber], () =>
+    fetch(`${BASE_URL}/surahs/${surahNumber}/ayahs/${ayahNumber}`)
+      .then((res) => res.json())
+      .then((res) => res.data)
+  );
+};
+
+export { useSurahs, useSurah, useAyah };
