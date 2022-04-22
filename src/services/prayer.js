@@ -1,8 +1,6 @@
 import { useQuery } from "react-query";
 
-// const BASE_URL = "https://waktu-sholat.vercel.app";
-// const BASE_URL = "http://localhost:3000";
-const BASE_URL = "https://waktu-sholat-git-development-renomureza.vercel.app";
+const BASE_URL = "https://waktu-sholat.vercel.app";
 
 const useProvinces = (options) => {
   return useQuery(
